@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:28:39 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/23 18:24:32 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/23 18:32:53 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ t_list		*parse_format(char *format)
 		if (*format == '%')
 		{
 			cspec = parse_conv_spec(format + 1);
-			ft_lstpushback(lst, cspec, sizeof(t_conv_spec));
+			if (!(ft_lstpushback(lst, cspec, sizeof(t_conv_spec))))
+			{
+				free(cspec);
+				return (NULL);
+			}
 			format += cspec->size;
+			free(cspec);
 		}
 		else
 			format++;
