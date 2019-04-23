@@ -6,7 +6,7 @@
 #    By: tpotier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/01 16:36:41 by tpotier           #+#    #+#              #
-#    Updated: 2019/04/23 19:17:31 by tpotier          ###   ########.fr        #
+#    Updated: 2019/04/23 19:28:22 by tpotier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,17 @@ $(NAME): $(OBJS) $(LIBFT)
 clean:
 	make -C $(LIBFTDIR) $@
 	rm -f $(OBJS) $(DEPS)
+	rm -f main
 
 fclean: clean
 	make -C $(LIBFTDIR) $@
 	rm -f $(NAME)
 
 re: fclean all
+
+test: all
+	gcc -L. -lftprintf -Iincludes main.c -o main
+
 
 .PHONY: all clean fclean re
 -include $(DEPS)

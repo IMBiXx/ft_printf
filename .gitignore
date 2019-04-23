@@ -2,3 +2,4 @@
 *.d
 libftprintf.a
 libft/libft.a
+main
