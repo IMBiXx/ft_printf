@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/23 19:00:43 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/23 20:24:10 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef enum	e_modifiers
 	MOD_GL
 }				t_modifiers;
 
+# define MAX(a, b)	((a) > (b) ? (a) : (b))
+
 # define FLAG_SH	(1 << _FLAG_SH)
 # define FLAG_0		(1 << _FLAG_0)
 # define FLAG_M		(1 << _FLAG_M)
@@ -51,6 +53,10 @@ typedef struct	s_conv_spec
 	int			size;
 }				t_conv_spec;
 
+
+
 size_t	num_len(long long n, int base);
+void	ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count);
+void	ft_putlong(long long n);
 
 #endif

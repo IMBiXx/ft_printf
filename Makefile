@@ -6,7 +6,7 @@
 #    By: tpotier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/01 16:36:41 by tpotier           #+#    #+#              #
-#    Updated: 2019/04/23 19:28:22 by tpotier          ###   ########.fr        #
+#    Updated: 2019/04/23 20:19:56 by tpotier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ fclean: clean
 re: fclean all
 
 test: all
-	gcc -L. -lftprintf -Iincludes main.c -o main
+	gcc -L. -lftprintf -Iincludes -Ilibft main.c -o main
 
 
 .PHONY: all clean fclean re
