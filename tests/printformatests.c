@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:48:43 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/23 14:07:39 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:01:16 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ int		main(void)
 
 	printf("\n##### SPECIAL CASES #####\n");
 	printf("%5[bonj\n");
+	printf("%1$d %1$x\n", d);
 	return (0);
 }
