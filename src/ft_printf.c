@@ -6,12 +6,12 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:36:18 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/23 16:27:37 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/23 19:11:22 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_printf(const char * restrict format, ...)
 {
-
+	(void)format;
 	return (0);
 }

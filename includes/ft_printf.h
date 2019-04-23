@@ -6,12 +6,14 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/23 18:06:51 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/23 19:00:43 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
+# include <string.h>
 
 enum			e_flags
 {
@@ -48,5 +50,7 @@ typedef struct	s_conv_spec
 	int			arg_index;
 	int			size;
 }				t_conv_spec;
+
+size_t	num_len(long long n, int base);
 
 #endif
