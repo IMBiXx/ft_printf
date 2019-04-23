@@ -1,17 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 14:36:18 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/23 16:27:37 by tpotier          ###   ########.fr       */
+/*   Created: 2019/04/23 16:28:39 by tpotier           #+#    #+#             */
+/*   Updated: 2019/04/23 16:47:07 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_printf(const char * restrict format, ...)
-{
+#include "ft_printf.h"
+#include "libft.h"
 
-	return (0);
+t_list		*parse_format(char *format)
+{
+	t_list	*lst;
+
+	lst = NULL;
+	return (lst);
+}
+
+t_conv_spec	*parse_conv_spec(char *format)
+{
+	t_conv_spec	*conv_spec;
+
+	return (conv_spec);
 }
