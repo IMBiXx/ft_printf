@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 17:00:18 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 17:05:52 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <string.h>
 
-enum			e_flags
+enum				e_flags
 {
 	_FLAG_SH = 0,
 	_FLAG_0,
@@ -34,32 +34,34 @@ enum			e_flags
 # define CONV_CHARS	"cspdiouxX"
 # define FLAG_CHARS	"#0-+"
 
-typedef struct	s_conv_spec
+typedef struct		s_conv_spec
 {
-	int			flags;
-	int			field;
-	int			precision;
-	char		modifier;
-	char		type;
-	int			arg_index;
-	int			size;
-}				t_conv_spec;
+	int				flags;
+	int				field;
+	int				precision;
+	char			modifier;
+	char			type;
+	int				arg_index;
+	int				size;
+}					t_conv_spec;
 
-
-size_t		num_len_base(long long n, int base);
-size_t		num_len_base_u(unsigned long long n, int base);
-void		ft_putl_zer_base(long long n, int zer, char f_sgn, int b);
-void		ft_putl_zer_base_u(unsigned long long n, int zer, int cas, int b);
+size_t				num_len_base(long long n, int base);
+size_t				num_len_base_u(unsigned long long n, int base);
+void				ft_putl_zer_base(long long n, int zer, char f_sgn, int b);
+void				ft_putl_zer_base_u(unsigned long long n, int zer, int cas,
+		int b);
 
 long long			cast_long_long(t_conv_spec *cspec, long long val);
-unsigned long long	cast_long_long_u(t_conv_spec *cspec, unsigned long long val);
+unsigned long long	cast_long_long_u(t_conv_spec *cspec,
+		unsigned long long val);
 
-void			ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count);
-t_conv_spec		*parse_conv_spec(char *format);
-int				put_d(t_conv_spec *cspec, long long *args);
-int				put_x(t_conv_spec *cspec, long long *args, int cas);
-int				put_s(t_conv_spec *conv_spec, long long *args);
-void			put_nchars(int n, char c);
-long long		cast_long_long(t_conv_spec *cspec, long long val);
+void				ft_put_conv_spec(t_conv_spec *cspec, void *args,
+		int *count);
+t_conv_spec			*parse_conv_spec(char *format);
+int					put_d(t_conv_spec *cspec, long long *args);
+int					put_x(t_conv_spec *cspec, long long *args, int cas);
+int					put_s(t_conv_spec *conv_spec, long long *args);
+void				put_nchars(int n, char c);
+long long			cast_long_long(t_conv_spec *cspec, long long val);
 
 #endif
