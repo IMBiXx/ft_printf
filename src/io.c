@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:34:02 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/24 17:32:56 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 17:38:15 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void		ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count)
 		*count += put_d(cspec, args);
 	if (cspec->type == 's')
 		*count += put_s(cspec, args);
+	if (cspec->type == 'o')
+		*count += put_o(cspec, args);
 	if (cspec->type == 'c')
 		*count += put_c(cspec, args);
 	if (cspec->type == 'x' || cspec->type == 'X')
