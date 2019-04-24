@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 16:40:58 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 16:44:24 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ size_t			num_len(long long n, int base);
 void			ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count);
 void			ft_putlong_zeroes(long long n, int zeroes, char force);
 t_conv_spec		*parse_conv_spec(char *format);
-int				put_d(t_conv_spec *cspec, long long *args)
-int				put_x(t_conv_spec *cspec, long long *args, int cas)
+int				put_d(t_conv_spec *cspec, long long *args);
+int				put_x(t_conv_spec *cspec, long long *args, int cas);
 int				put_s(t_conv_spec *conv_spec, long long *args);
 size_t			num_len(long long n, int base);
 void			put_nchars(int n, char c);
