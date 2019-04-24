@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:06:17 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/24 17:00:03 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 17:07:14 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		ft_putl_zer_base(long long n, int zer, char f_sgn, int b)
 	put_nchars(zer, '0');
 	numb = (n < 0) ? -n : n;
 	if (numb > (unsigned int)(b - 1))
-		ft_putl_zer_base(numb / b, 0, 0, cas, b);
+		ft_putl_zer_base(numb / b, 0, 0, b);
 	ft_putchar(digits[numb % b]);
 }
 
