@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 14:52:00 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:26:20 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ enum			e_flags
 	_FLAG_P
 };
 
-typedef enum	e_modifiers
-{
-	MOD_NONE = 0,
-	MOD_HH,
-	MOD_H,
-	MOD_L,
-	MOD_LL,
-	MOD_GL
-}				t_modifiers;
+//typedef enum	e_modifiers
+//{
+	//MOD_NONE = 0,
+	//MOD_HH,
+	//MOD_H,
+	//MOD_L,
+	//MOD_LL,
+	//MOD_GL
+//}				t_modifiers;
 
 # define MAX(a, b)	((a) > (b) ? (a) : (b))
 
@@ -48,7 +48,7 @@ typedef struct	s_conv_spec
 	int			flags;
 	int			field;
 	int			precision;
-	t_modifiers	modifier;
+	char		modifier;
 	char		type;
 	int			arg_index;
 	int			size;
