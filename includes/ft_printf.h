@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 15:26:20 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:45:07 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct	s_conv_spec
 
 size_t			num_len(long long n, int base);
 void			ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count);
-void			ft_putlong_zeroes(long long n, int zeroes);
+void			ft_putlong_zeroes(long long n, int zeroes, char force);
 t_conv_spec		*parse_conv_spec(char *format);
 
 #endif
