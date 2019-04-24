@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:48:43 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/23 16:13:05 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 15:57:40 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		main(void)
 	printf("%5lu\n", lu);
 	printf("%5f\n", f);
 	printf("%5c\n", c);
-	printf("%5s\n", s);
+	printf("%50s\n", s);
 
 	printf("\n##### %%.5d #####\n");
 
@@ -42,7 +42,7 @@ int		main(void)
 	printf("%.5lu\n", lu);
 	printf("%.5f\n", f);
 	printf("%.5c\n", c);
-	printf("%.5s\n", s);
+	printf("%.50s|\n", s);
 
 	printf("\n##### %%-5d #####\n");
 
@@ -50,7 +50,7 @@ int		main(void)
 	printf("%-5lu|\n", lu);
 	printf("%-5f|\n", f);
 	printf("%-5c|\n", c);
-	printf("%-5s|\n", s);
+	printf("%-50s|\n", s);
 
 	printf("\n##### %%#h[d.o.u.x.X] #####\n");
 
@@ -106,6 +106,11 @@ int		main(void)
 
 	printf("\n##### SPECIAL CASES #####\n");
 	printf("%5[bonj\n");
-	printf("%1$d %1$x %3$d %d\n", d, 2, 3, 4);
+	printf("%1$d %1$x %d %d\n", d, 2, 3, 4);
+
+	printf("%10$.5d\n", 42, 1, 2, 3, 4, 5, 6, 7, 8, 9, 20);
+	printf("%0$d", 42, 1, 2, 3, 4, 5, 6, 7, 8, 9, 20);
+	printf("%5.f", 42.123456);
+
 	return (0);
 }

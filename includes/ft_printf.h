@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 17:05:52 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 17:08:16 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ int					put_x(t_conv_spec *cspec, long long *args, int cas);
 int					put_s(t_conv_spec *conv_spec, long long *args);
 void				put_nchars(int n, char c);
 long long			cast_long_long(t_conv_spec *cspec, long long val);
+int					put_c(t_conv_spec *conv_spec, long long *args);
 
 #endif
