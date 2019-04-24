@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 16:07:02 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 16:21:24 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,6 @@ enum			e_flags
 	_FLAG_M,
 	_FLAG_P
 };
-
-//typedef enum	e_modifiers
-//{
-	//MOD_NONE = 0,
-	//MOD_HH,
-	//MOD_H,
-	//MOD_L,
-	//MOD_LL,
-	//MOD_GL
-//}				t_modifiers;
 
 # define MAX(a, b)	((a) > (b) ? (a) : (b))
 
@@ -61,5 +51,11 @@ size_t			num_len(long long n, int base);
 void			ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count);
 void			ft_putlong_zeroes(long long n, int zeroes, char force);
 t_conv_spec		*parse_conv_spec(char *format);
+int				put_d(t_conv_spec *cspec, long long *args);
+int				put_s(t_conv_spec *conv_spec, long long *args);
+size_t			num_len(long long n, int base);
+void			put_nchars(int n, char c);
+void			ft_putlong_zeroes(long long n, int zeroes, char force);
+long long		cast_long_long(t_conv_spec *cspec, long long val);
 
 #endif
