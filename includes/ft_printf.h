@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/23 20:50:24 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 14:52:00 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef enum	e_modifiers
 # define FLAG_P		(1 << _FLAG_P)
 
 # define CONV_CHARS	"cspdiouxX"
+# define FLAG_CHARS	"#0-+"
 
 typedef struct	s_conv_spec
 {
@@ -55,8 +56,9 @@ typedef struct	s_conv_spec
 
 
 
-size_t	num_len(long long n, int base);
-void	ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count);
-void	ft_putlong_zeroes(long long n, int zeroes);
+size_t			num_len(long long n, int base);
+void			ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count);
+void			ft_putlong_zeroes(long long n, int zeroes);
+t_conv_spec		*parse_conv_spec(char *format);
 
 #endif
