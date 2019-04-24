@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:06:17 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/24 16:52:54 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/24 17:00:03 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void		put_nchars(int n, char c)
 /* cas = true -> chars must be uppercase */
 /* b = base */
 
-void		ft_putl_zer_base(long long n, int zer, char f_sgn, int cas, int b)
+void		ft_putl_zer_base(long long n, int zer, char f_sgn, int b)
 {
 	unsigned long long	numb;
-	const char			digits[] = "0123456789abcdef";
+	const char			digits[] = "0123456789";
 
 	if (n < 0)
 		ft_putchar('-');
@@ -57,7 +57,7 @@ void		ft_putl_zer_base(long long n, int zer, char f_sgn, int cas, int b)
 	numb = (n < 0) ? -n : n;
 	if (numb > (unsigned int)(b - 1))
 		ft_putl_zer_base(numb / b, 0, 0, cas, b);
-	ft_putchar(b ? ft_toupper(digits[numb % b]) : digits[numb % b]);
+	ft_putchar(digits[numb % b]);
 }
 
 /*unsigned version of ft_putl_zer_base*/
@@ -69,5 +69,5 @@ void		ft_putl_zer_base_u(unsigned long long n, int zer, int cas, int b)
 	put_nchars(zer, '0');
 	if (n > (unsigned int)(b - 1))
 		ft_putl_zer_base_u(n / b, 0, cas, b);
-	ft_putchar(b ? ft_toupper(digits[n % b]) : digits[n % b]);
+	ft_putchar(cas ? ft_toupper(digits[n % b]) : digits[n % b]);
 }
