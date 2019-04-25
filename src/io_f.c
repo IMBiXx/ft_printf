@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:53:35 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 23:56:26 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/25 14:53:49 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,40 +29,35 @@ void			display_pre_float(float f, int *count)
 
 void			display_post_float(int n, int *count)
 {
-	if (*count < 0)
-	{
-	//	ft_putchar(n + '0');
-	}
-	else
-	{
-		printf("count: %d, n: %d\n", *count, n);
-		(*count)--;
-		display_post_float(n / 10, count);
-		/*ft_putchar(((int)f % 10) + '0');*/
-	}
+	char	*ret;
+
+	ret = ft_itoa(n);
+	ft_putstr(&ret[*count]);
+	free(ret);
 }
 
 int		main(void)
 {
-	float	f = 420.1234;
+	float	f = -420.1234;
 	long	i = 0;
 	long	precision = 6;
 	float	tmp = f;
-	int		n;
 	int		count = 1;
 
+	if (f < 0)
+	{
+		ft_putchar('-');
+		count++;
+		f = -f;
+	}
 	display_pre_float(f, &count);
 	ft_putchar('.');
-	printf("[%d]\n", count);
 	while (i < precision)
 	{
 		tmp = tmp * 10;
 		i++;
 	}
-	printf("tmp: [%f]\n", tmp);
-	n = (int)tmp;
-	printf("n: [%d]\n", n);
-	display_post_float(n, &count);
+	display_post_float((int)tmp, &count);
 }
 
 /*int			put_f(t_conv_spec *cspec, long long *args)*/
