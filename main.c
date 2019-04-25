@@ -8,6 +8,7 @@ int	main(void)
 	long long args[10];
 	int k;
 
+	ft_printf("%#5x %5d ");
 	k = 0;
 	args[0] = "bonjour les amis";
 	args[1] = "salut les potes";

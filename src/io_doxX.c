@@ -6,19 +6,19 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/24 19:15:16 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/25 18:22:10 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			put_d(t_conv_spec *cspec, long long *args)
+int			put_d(t_conv_spec *cspec, va_list arg)
 {
 	long long	d;
 	int			num_size;
 	int			n_zeroes;
 
-	d = cast_long_long(cspec, args[cspec->arg_index]);
+	d = get_arg_int(cspec, arg);
 	num_size = num_len_base(d, 10);
 	n_zeroes = (cspec->precision - num_size > 0 ? cspec->precision
 		- num_size : 0);
@@ -31,13 +31,13 @@ int			put_d(t_conv_spec *cspec, long long *args)
 	return (MAX(num_size, cspec->field));
 }
 
-int			put_x(t_conv_spec *cspec, long long *args)
+int			put_x(t_conv_spec *cspec, va_list arg)
 {
 	long long	d;
 	int			num_size;
 	int			n_zeroes;
 
-	d = cast_long_long_u(cspec, args[cspec->arg_index]);
+	d = get_arg_int(cspec, arg);
 	num_size = num_len_base_u(d, 16);
 	n_zeroes = (cspec->precision - num_size > 0 ? cspec->precision
 		- num_size : 0);
@@ -52,13 +52,13 @@ int			put_x(t_conv_spec *cspec, long long *args)
 	return (MAX(num_size, cspec->field));
 }
 
-int			put_o(t_conv_spec *cspec, long long *args)
+int			put_o(t_conv_spec *cspec, va_list arg)
 {
 	long long	d;
 	int			num_size;
 	int			n_zeroes;
 
-	d = cast_long_long_u(cspec, args[cspec->arg_index]);
+	d = get_arg_int(cspec, arg);
 	num_size = num_len_base_u(d, 8);
 	n_zeroes = (cspec->precision - num_size > 0 ? cspec->precision
 		- num_size : 0);

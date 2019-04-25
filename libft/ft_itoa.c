@@ -6,7 +6,7 @@
 /*   By: Valentin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:56:12 by Valentin          #+#    #+#             */
-/*   Updated: 2019/04/25 14:50:57 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:58:03 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static int		ft_intcount(int n)
 char			*ft_itoa(int n)
 {
 	char		*ret;
-	char		*final;
 	long int	nb;
 	int			i;
 
