@@ -1,5 +1,7 @@
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 void	foo(int type, int count, ...)
 {
@@ -26,26 +28,45 @@ void	foo(int type, int count, ...)
 	va_end(ap);
 }
 
+void	print_memory(const void *addr, size_t size);
+
 void	bar(int count, ...)
 {
-	va_list ap;
-	long long d;
-	char c, *s;
+	va_list	ap;
+	va_list	*aps;
+	int		i;
 
+	i = 0;
+	aps = malloc(count * sizeof(va_list));
 	va_start(ap, count);
-	while (count--)
+	while (i < count)
 	{
-		d = va_arg(ap, long long);
-		printf("long long %lld\n", d);
-		printf("unsigned char %hhu\n", (unsigned char)d);
+		va_copy(aps[i++], ap);
+		va_arg(ap, int);
 	}
 	va_end(ap);
+	va_copy(ap, aps[count - 2]);
+	printf("%lld\n", va_arg(ap, long long));
+	va_end(ap);
+	va_copy(ap, aps[count - 1]);
+	printf("%Lf\n", va_arg(ap, long double));
+	va_end(ap);
+	va_copy(ap, aps[count - 1]);
+	printf("%s\n", va_arg(ap, char *));
+	va_end(ap);
+	i = 0;
+	while (i < count)
+	{
+		va_end(aps[i++]);
+	}
 }
 int	main(void)
 {
-	foo(0, 2, "hello world", "ok");
-	foo(1, 4, 18, 22, -14, 5);
-	foo(2, 1, 'f');
-	bar(4, 10, 15, 20, 1000);
+	long long k = 123;
+	long double l = 456;
+	char *hel = "hello";
+
+	bar(4, 1, 2, 3, hel);
+	printf("%Lf\n", (long double)(long long)hel);
 	return (0);
 }
