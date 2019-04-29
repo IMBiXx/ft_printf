@@ -6,26 +6,26 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:59:02 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 10:43:13 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 11:07:28 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		put_c(t_conv_spec *conv_spec, va_list arg)
+int		put_c(t_conv_spec *cs, va_list arg)
 {
 	char			c;
 
 	c = (char)va_arg(arg, int);
-	if (!(conv_spec->flags & FLAG_M))
-		put_nchars(conv_spec->field - 1, ' ');
+	if (!(cs->flags & FLAG_M))
+		put_nchars(cs->field - 1, ' ');
 	ft_putchar(c);
-	if (conv_spec->flags & FLAG_M)
-		put_nchars(conv_spec->field - 1, ' ');
-	return (max(1, conv_spec->field));
+	if (cs->flags & FLAG_M)
+		put_nchars(cs->field - 1, ' ');
+	return (max(1, cs->field));
 }
 
-int		put_s(t_conv_spec *conv_spec, va_list arg)
+int		put_s(t_conv_spec *cs, va_list arg)
 {
 	size_t			str_size;
 	char			*s;
@@ -34,15 +34,37 @@ int		put_s(t_conv_spec *conv_spec, va_list arg)
 	n_print = 0;
 	s = va_arg(arg, char *);
 	str_size = s ? ft_strlen(s) : 6;
-	if (conv_spec->precision >= 0 && conv_spec->precision < (int)str_size)
-		n_print = conv_spec->precision;
+	if (cs->precision >= 0 && cs->precision < (int)str_size)
+		n_print = cs->precision;
 	else
 		n_print = str_size;
-	if (!(conv_spec->flags & FLAG_M))
-		put_nchars(conv_spec->field - n_print, ' ');
-	if (conv_spec->precision != 0)
+	if (!(cs->flags & FLAG_M))
+		put_nchars(cs->field - n_print, ' ');
+	if (cs->precision != 0)
 		ft_putnstr(s ? s : "(null)", n_print);
-	if (conv_spec->flags & FLAG_M)
-		put_nchars(conv_spec->field - n_print, ' ');
-	return (max(n_print, conv_spec->field));
+	if (cs->flags & FLAG_M)
+		put_nchars(cs->field - n_print, ' ');
+	return (max(n_print, cs->field));
+}
+
+int		put_r(t_conv_spec *cs, va_list arg)
+{
+	size_t			str_size;
+	char			*r;
+	unsigned int	n_print;
+
+	n_print = 0;
+	r = va_arg(arg, char *);
+	str_size = r ? ft_strlen(r) : 6;
+	if (cs->precision >= 0 && cs->precision < (int)str_size)
+		n_print = cs->precision;
+	else
+		n_print = str_size;
+	if (!(cs->flags & FLAG_M))
+		put_nchars(cs->field - n_print, ' ');
+	if (cs->precision != 0)
+		putstr_r(r ? r : "(null)", n_print);
+	if (cs->flags & FLAG_M)
+		put_nchars(cs->field - n_print, ' ');
+	return (max(n_print, cs->field));
 }

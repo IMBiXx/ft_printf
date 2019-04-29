@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 10:52:16 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 11:06:43 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,10 @@ int					put_f(t_conv_spec *cs, va_list arg);
 int					put_k(t_conv_spec *cs, va_list arg);
 int					put_b(t_conv_spec *cs, va_list arg);
 int					put_perc(t_conv_spec *cs);
+int					put_r(t_conv_spec *cs, va_list arg);
 
 void				put_nchars(int n, char c);
+void				putstr_r(char *s, unsigned int size);
 
 void				parse_flags(t_conv_spec *cs, char *fmt, size_t *i);
 void				parse_field(t_conv_spec *cs, char *fmt, size_t *i,
