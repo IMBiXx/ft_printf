@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 08:10:32 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 08:21:52 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ enum				e_flags
 	_FLAG_SH = 0,
 	_FLAG_0,
 	_FLAG_M,
-	_FLAG_P
+	_FLAG_P,
+	_FLAG_SP
 };
 
 typedef enum		e_mods
@@ -41,9 +42,10 @@ typedef enum		e_mods
 # define FLAG_0		(1 << _FLAG_0)
 # define FLAG_M		(1 << _FLAG_M)
 # define FLAG_P		(1 << _FLAG_P)
+# define FLAG_SP		(1 << _FLAG_SP)
 
 # define CONV_CHARS	"cspdiouxXf%kKbB"
-# define FLAG_CHARS	"#0-+"
+# define FLAG_CHARS	"#0-+ "
 # define MOD_CHARS	"lhL"
 
 # define K_COL_MSK	0xffffffUL

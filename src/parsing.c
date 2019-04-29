@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:28:39 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 07:57:32 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 08:21:17 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		parse_flags(t_conv_spec *cs, char *fmt, size_t *i)
 		cs->flags |= fmt[*i] == '0' ? FLAG_0 : 0;
 		cs->flags |= fmt[*i] == '-' ? FLAG_M : 0;
 		cs->flags |= fmt[*i] == '+' ? FLAG_P : 0;
+		cs->flags |= fmt[*i] == ' ' ? FLAG_SP : 0;
 		(*i)++;
 	}
 }
