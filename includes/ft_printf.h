@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 07:49:39 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 08:10:32 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef enum		e_mods
 # define FLAG_M		(1 << _FLAG_M)
 # define FLAG_P		(1 << _FLAG_P)
 
-# define CONV_CHARS	"cspdiouxXf%kK"
+# define CONV_CHARS	"cspdiouxXf%kKbB"
 # define FLAG_CHARS	"#0-+"
 # define MOD_CHARS	"lhL"
 
@@ -101,6 +101,7 @@ int					put_c(t_conv_spec *cs, va_list arg);
 int					put_s(t_conv_spec *cs, va_list arg);
 int					put_f(t_conv_spec *cs, va_list arg);
 int					put_k(t_conv_spec *cs, va_list arg);
+int					put_b(t_conv_spec *cs, va_list arg);
 
 void				put_nchars(int n, char c);
 long long			cast_long_long(t_conv_spec *cspec, long long val);

@@ -8,11 +8,11 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (-1);
 	ft_putstr("Mine: |");
-	k = ft_printf(av[1], 'A', 42, 42.012345678, 42.0123456L, "hello world", 4242424242424242);
+	k = ft_printf(av[1], 'A', 42, 42.98765432101111, 42.0123456L, "hello world", 4242424242424242);
 	ft_putstr("| (");
 	ft_putnbr(k);
 	ft_putstr(")\nOrig: |");
-	k = printf(av[1], 'A', 42, 42.012345678, 42.0123456L, "hello world", 4242424242424242);
+	k = printf(av[1], 'A', 42, 42.98765432101111, 42.0123456L, "hello world", 4242424242424242);
 	printf("| (%d)\n", k);
 	return (0);
 }
