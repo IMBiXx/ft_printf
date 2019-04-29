@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 09:12:34 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 10:11:42 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct		s_conv_spec
 {
 	int				flags;
 	unsigned int	field;
-	unsigned int	precision;
+	int				precision;
 	char			modifier;
 	char			type;
 	int				size;
@@ -99,6 +99,7 @@ unsigned long long	get_arg_uint(t_conv_spec *cspec, va_list arg);
 void				ft_put_conv_spec(t_conv_spec *cspec, va_list arg, int *c);
 
 int					put_d(t_conv_spec *cs, va_list arg);
+int					put_u(t_conv_spec *cs, va_list arg);
 int					put_x(t_conv_spec *cs, va_list arg);
 int					put_o(t_conv_spec *cs, va_list arg);
 int					put_c(t_conv_spec *cs, va_list arg);
