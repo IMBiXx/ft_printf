@@ -6,12 +6,12 @@
 #    By: tpotier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/01 16:36:41 by tpotier           #+#    #+#              #
-#    Updated: 2019/04/29 03:33:37 by tpotier          ###   ########.fr        #
+#    Updated: 2019/04/29 06:01:42 by tpotier          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-FILES = ft_printf io parsing io_cs io_doxX io_utils cast
+FILES = ft_printf io parsing io_cs io_doxX io_utils cast io_f
 IFILES = ft_printf.h
 NAME = libftprintf.a
 IDIR = includes/

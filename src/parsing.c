@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:28:39 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 04:50:43 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 05:44:35 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void		parse_flags(t_conv_spec *cs, char *fmt, size_t *i)
 void		parse_field(t_conv_spec *cs, char *fmt, size_t *i, va_list arg)
 {
 	if (fmt[*i] == '*')
+	{
 		cs->field = va_arg(arg, int);
+		(*i)++;
+	}
 	if (ft_isdigit(fmt[*i]))
 		cs->field = ft_atoi_len(fmt, i);
 }

@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 04:52:48 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 06:17:27 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef enum		e_mods
 # define FLAG_M		(1 << _FLAG_M)
 # define FLAG_P		(1 << _FLAG_P)
 
-# define CONV_CHARS	"cspdiouxXf"
+# define CONV_CHARS	"cspdiouxXf%"
 # define FLAG_CHARS	"#0-+"
 # define MOD_CHARS	"lhL"
 
@@ -68,7 +68,7 @@ void				ft_putl_zer_base_u(unsigned long long n, int zer, int cas,
 
 long long			get_arg_int(t_conv_spec *cspec, va_list arg);
 long double			get_arg_float(t_conv_spec *cspec, va_list arg);
-long long			get_arg_uint(t_conv_spec *cspec, va_list arg);
+unsigned long long	get_arg_uint(t_conv_spec *cspec, va_list arg);
 
 void				ft_put_conv_spec(t_conv_spec *cspec, va_list arg, int *c);
 
@@ -77,6 +77,8 @@ int					put_x(t_conv_spec *cs, va_list arg);
 int					put_o(t_conv_spec *cs, va_list arg);
 int					put_c(t_conv_spec *cs, va_list arg);
 int					put_s(t_conv_spec *cs, va_list arg);
+int					put_f(t_conv_spec *cs, va_list arg);
+
 void				put_nchars(int n, char c);
 long long			cast_long_long(t_conv_spec *cspec, long long val);
 

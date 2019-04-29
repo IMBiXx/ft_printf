@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 04:50:11 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 05:55:53 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int			put_d(t_conv_spec *cs, va_list arg)
 
 	d = get_arg_int(cs, arg);
 	num_size = num_len_base(d, 10);
-	n_zeroes = (cs->precision - num_size) > 0 ? cs->precision
-		- num_size : 0;
+	n_zeroes = cs->precision > num_size ? cs->precision - num_size : 0;
 	num_size += n_zeroes + (d < 0 || cs->flags & FLAG_P ? 1 : 0);
 	if (!(cs->flags & FLAG_M))
 		put_nchars(cs->field - num_size, ' ');
@@ -37,10 +36,9 @@ int			put_x(t_conv_spec *cs, va_list arg)
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
-	d = get_arg_int(cs, arg);
+	d = get_arg_uint(cs, arg);
 	num_size = num_len_base_u(d, 16);
-	n_zeroes = (cs->precision - num_size > 0) ? cs->precision
-		- num_size : 0;
+	n_zeroes = cs->precision > num_size ? cs->precision - num_size : 0;
 	num_size += n_zeroes + (cs->flags & FLAG_SH ? 2 : 0);
 	if (!(cs->flags & FLAG_M))
 		put_nchars(cs->field - num_size, ' ');
@@ -58,10 +56,9 @@ int			put_o(t_conv_spec *cs, va_list arg)
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
-	d = get_arg_int(cs, arg);
+	d = get_arg_uint(cs, arg);
 	num_size = num_len_base_u(d, 8);
-	n_zeroes = (cs->precision - num_size > 0) ? cs->precision
-		- num_size : 0;
+	n_zeroes = cs->precision > num_size ? cs->precision - num_size : 0;
 	num_size += n_zeroes + (cs->flags & FLAG_SH ? 1 : 0);
 	if (!(cs->flags & FLAG_M))
 		put_nchars(cs->field - num_size, ' ');

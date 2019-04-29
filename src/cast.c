@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:23:02 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/25 18:19:20 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 06:16:18 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,12 @@ long double			get_arg_float(t_conv_spec *cspec, va_list arg)
 {
 	if (cspec->modifier == MOD_LLL)
 		return ((long double)va_arg(arg, long double));
-	if (cspec->modifier == MOD_L)
+	if (cspec->modifier == MOD_L || cspec->modifier == MOD_NONE)
 		return ((double)va_arg(arg, double));
-	if (cspec->modifier == MOD_NONE)
-		return ((float)va_arg(arg, double));
 	return (0);
 }
 
-long long			get_arg_uint(t_conv_spec *cspec, va_list arg)
+unsigned long long	get_arg_uint(t_conv_spec *cspec, va_list arg)
 {
 	if (cspec->modifier == MOD_LL)
 		return ((unsigned long long)va_arg(arg, unsigned long long));

@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:53:35 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/25 14:53:49 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 06:12:17 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			display_post_float(int n, int *count)
 	free(ret);
 }
 
-int		main(void)
+int		mainnnnn(void)
 {
 	float	f = -420.1234;
 	long	i = 0;
@@ -58,23 +58,31 @@ int		main(void)
 		i++;
 	}
 	display_post_float((int)tmp, &count);
+	return (0);
 }
 
-/*int			put_f(t_conv_spec *cspec, long long *args)*/
-/*{*/
-/*long long	f;*/
-/*int			num_size;*/
-/*int			n_zeroes;*/
+int			put_f(t_conv_spec *cs, va_list arg)
+{
+	long double		f;
+	size_t			num_size;
+	unsigned int	n;
 
-/*d = cast_long_long(cspec, args[cspec->arg_index]);*/
-/*num_size = num_len_base(d, 10);*/
-/*n_zeroes = (cspec->precision - num_size > 0 ? cspec->precision*/
-/*- num_size : 0);*/
-/*num_size += n_zeroes + (d < 0 || cspec->flags & FLAG_P ? 1 : 0);*/
-/*if (!(cspec->flags & FLAG_M))*/
-/*put_nchars(cspec->field - num_size, ' ');*/
-/*ft_putl_zer_base(d, n_zeroes, cspec->flags & FLAG_P, 10);*/
-/*if (cspec->flags & FLAG_M)*/
-/*put_nchars(cspec->field - num_size, ' ');*/
-/*return (MAX(num_size, cspec->field));*/
-/*}*/
+	f = get_arg_float(cs, arg);
+	num_size = num_len_base((int)f, 10) + cs->precision
+		+ (cs->precision > 0 ? 1 : 0);
+	num_size += (f < 0 || cs->flags & FLAG_P ? 1 : 0);
+	if (!(cs->flags & FLAG_M))
+		put_nchars(cs->field - num_size, ' ');
+	ft_putnbr((int)f);
+	n = 0;
+	if (cs->precision > 0)
+	{
+		f -= (int)f;
+		ft_putchar('.');
+		while (n++ < cs->precision)
+			ft_putchar('0' + (int)(f *= 10) % 10);
+	}
+	if (cs->flags & FLAG_M)
+		put_nchars(cs->field - num_size, ' ');
+	return (MAX(num_size, cs->field));
+}
