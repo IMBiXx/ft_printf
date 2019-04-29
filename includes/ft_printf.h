@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 11:06:43 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 11:46:19 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include <string.h>
 # include <stdarg.h>
+# include <inttypes.h>
 
 enum				e_flags
 {
@@ -33,7 +34,9 @@ typedef enum		e_mods
 	MOD_NONE,
 	MOD_L,
 	MOD_LL,
-	MOD_LLL
+	MOD_LLL,
+	MOD_J,
+	MOD_Z
 }					t_mods;
 
 # define FLAG_SH	(1 << _FLAG_SH)
@@ -42,9 +45,9 @@ typedef enum		e_mods
 # define FLAG_P		(1 << _FLAG_P)
 # define FLAG_SP		(1 << _FLAG_SP)
 
-# define CONV_CHARS	"cspdiouxXf%kKbBp"
+# define CONV_CHARS	"cspdiouUxXf%kKbBp"
 # define FLAG_CHARS	"#0-+ "
-# define MOD_CHARS	"lhL"
+# define MOD_CHARS	"lhLjz"
 # define DIGITS		"0123456789"
 # define VALID_CHRS	(FLAG_CHARS MOD_CHARS DIGITS ".")
 
@@ -92,9 +95,9 @@ void				ft_putl_zer_base(long long n, int zer, char f_sgn, int b);
 void				ft_putl_zer_base_u(unsigned long long n, int zer, int cas,
 		int b);
 
-long long			get_arg_int(t_conv_spec *cspec, va_list arg);
+intmax_t			get_arg_int(t_conv_spec *cspec, va_list arg);
 long double			get_arg_float(t_conv_spec *cspec, va_list arg);
-unsigned long long	get_arg_uint(t_conv_spec *cspec, va_list arg);
+uintmax_t			get_arg_uint(t_conv_spec *cspec, va_list arg);
 
 void				ft_put_conv_spec(t_conv_spec *cspec, va_list arg, int *c);
 

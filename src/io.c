@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:34:02 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 11:00:11 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 11:48:53 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		ft_put_conv_spec(t_conv_spec *cspec, va_list arg, int *c)
 {
 	if (cspec->type == 'd' || cspec->type == 'i')
 		*c += put_d(cspec, arg);
-	if (cspec->type == 'u')
+	if (cspec->type == 'u' || cspec->type == 'U')
 		*c += put_u(cspec, arg);
 	if (cspec->type == 'p')
 		*c += put_p(cspec, arg);

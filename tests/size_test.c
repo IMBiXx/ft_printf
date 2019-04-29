@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <inttypes.h>
 
 int	main(void)
 {
@@ -6,6 +7,7 @@ int	main(void)
 	printf("long double: %lu\n", sizeof(long double));
 	printf("double: %lu\n", sizeof(double));
 	printf("float: %lu\n", sizeof(float));
+	printf("intmax_t: %lu\n", sizeof(intmax_t));
 	printf("long long: %lu\n", sizeof(long long));
 	printf("long: %lu\n", sizeof(long));
 	printf("int: %lu\n", sizeof(int));

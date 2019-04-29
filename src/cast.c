@@ -6,13 +6,13 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:23:02 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 06:16:18 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 11:44:00 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long long			get_arg_int(t_conv_spec *cspec, va_list arg)
+intmax_t	get_arg_int(t_conv_spec *cspec, va_list arg)
 {
 	if (cspec->modifier == MOD_LL)
 		return ((long long)va_arg(arg, long long));
@@ -24,10 +24,14 @@ long long			get_arg_int(t_conv_spec *cspec, va_list arg)
 		return ((short)va_arg(arg, int));
 	if (cspec->modifier == MOD_HH)
 		return ((char)va_arg(arg, int));
+	if (cspec->modifier == MOD_J)
+		return ((intmax_t)va_arg(arg, intmax_t));
+	if (cspec->modifier == MOD_Z)
+		return ((ssize_t)va_arg(arg, ssize_t));
 	return (0);
 }
 
-long double			get_arg_float(t_conv_spec *cspec, va_list arg)
+long double	get_arg_float(t_conv_spec *cspec, va_list arg)
 {
 	if (cspec->modifier == MOD_LLL)
 		return ((long double)va_arg(arg, long double));
@@ -36,7 +40,7 @@ long double			get_arg_float(t_conv_spec *cspec, va_list arg)
 	return (0);
 }
 
-unsigned long long	get_arg_uint(t_conv_spec *cspec, va_list arg)
+uintmax_t	get_arg_uint(t_conv_spec *cspec, va_list arg)
 {
 	if (cspec->modifier == MOD_LL)
 		return ((unsigned long long)va_arg(arg, unsigned long long));
@@ -48,5 +52,9 @@ unsigned long long	get_arg_uint(t_conv_spec *cspec, va_list arg)
 		return ((unsigned short)va_arg(arg, unsigned int));
 	if (cspec->modifier == MOD_HH)
 		return ((unsigned char)va_arg(arg, unsigned int));
+	if (cspec->modifier == MOD_J)
+		return ((uintmax_t)va_arg(arg, uintmax_t));
+	if (cspec->modifier == MOD_Z)
+		return ((size_t)va_arg(arg, size_t));
 	return (0);
 }

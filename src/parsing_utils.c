@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 08:44:44 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 09:11:58 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 11:43:27 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void		parse_modifiers(t_conv_spec *cs, char *fmt, size_t *i)
 		if (fmt[*i] == 'h')
 			cs->modifier = fmt[*i + 1] == 'h' ? MOD_HH : MOD_H;
 		cs->modifier = fmt[*i] == 'L' ? MOD_LLL : cs->modifier;
+		cs->modifier = fmt[*i] == 'j' ? MOD_J : cs->modifier;
+		cs->modifier = fmt[*i] == 'z' ? MOD_Z : cs->modifier;
 		if (cs->modifier == MOD_HH || cs->modifier == MOD_LL)
 			(*i)++;
 	}

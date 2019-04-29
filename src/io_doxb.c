@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 10:45:30 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 11:49:14 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			put_d(t_conv_spec *cs, va_list arg)
 {
-	long long		d;
+	intmax_t		d;
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
@@ -36,10 +36,12 @@ int			put_d(t_conv_spec *cs, va_list arg)
 
 int			put_u(t_conv_spec *cs, va_list arg)
 {
-	unsigned long long	d;
-	unsigned int		num_size;
-	unsigned int		n_zeroes;
+	uintmax_t		d;
+	unsigned int	num_size;
+	unsigned int	n_zeroes;
 
+	if (cs->type == 'U')
+		cs->modifier = MOD_L;
 	d = get_arg_uint(cs, arg);
 	num_size = (cs->precision || d) ? num_len_base_u(d, 10) : 0;
 	n_zeroes = cs->precision > (int)num_size ? cs->precision - num_size : 0;
@@ -57,7 +59,7 @@ int			put_u(t_conv_spec *cs, va_list arg)
 
 int			put_x(t_conv_spec *cs, va_list arg)
 {
-	long long		d;
+	uintmax_t		d;
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
@@ -80,7 +82,7 @@ int			put_x(t_conv_spec *cs, va_list arg)
 
 int			put_o(t_conv_spec *cs, va_list arg)
 {
-	long long		d;
+	uintmax_t		d;
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
@@ -103,7 +105,7 @@ int			put_o(t_conv_spec *cs, va_list arg)
 
 int			put_b(t_conv_spec *cs, va_list arg)
 {
-	long long		d;
+	uintmax_t		d;
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
