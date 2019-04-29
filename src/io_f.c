@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:53:35 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 08:29:35 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 09:11:36 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,5 @@ int			put_f(t_conv_spec *cs, va_list arg)
 	}
 	if (cs->flags & FLAG_M)
 		put_nchars(cs->field - num_size, ' ');
-	return (MAX(num_size, cs->field));
+	return (max(num_size, cs->field));
 }

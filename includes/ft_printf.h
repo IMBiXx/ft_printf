@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 08:48:31 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 09:12:34 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef enum		e_mods
 	MOD_LLL
 }					t_mods;
 
-# define MAX(a, b)	((a) > (b) ? (a) : (b))
-
 # define FLAG_SH	(1 << _FLAG_SH)
 # define FLAG_0		(1 << _FLAG_0)
 # define FLAG_M		(1 << _FLAG_M)
@@ -47,6 +45,8 @@ typedef enum		e_mods
 # define CONV_CHARS	"cspdiouxXf%kKbBp"
 # define FLAG_CHARS	"#0-+ "
 # define MOD_CHARS	"lhL"
+# define DIGITS		"0123456789"
+# define VALID_CHRS	(FLAG_CHARS MOD_CHARS DIGITS ".")
 
 # define K_COL_MSK	0xffffffUL
 
@@ -82,6 +82,8 @@ typedef struct		s_conv_spec
 
 int					ft_printf(const char *restrict format, ...);
 
+int					max(int a, int b);
+
 int					parse_print_format(char *format, va_list arg);
 
 size_t				num_len_base(long long n, int base);
@@ -104,6 +106,7 @@ int					put_s(t_conv_spec *cs, va_list arg);
 int					put_f(t_conv_spec *cs, va_list arg);
 int					put_k(t_conv_spec *cs, va_list arg);
 int					put_b(t_conv_spec *cs, va_list arg);
+int					put_perc(t_conv_spec *cs);
 
 void				put_nchars(int n, char c);
 

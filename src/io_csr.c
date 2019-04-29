@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:59:02 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 08:15:22 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 09:10:15 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		put_c(t_conv_spec *conv_spec, va_list arg)
 	ft_putchar(c);
 	if (conv_spec->flags & FLAG_M)
 		put_nchars(conv_spec->field - 1, ' ');
-	return (MAX(1, conv_spec->field));
+	return (max(1, conv_spec->field));
 }
 
 int		put_s(t_conv_spec *conv_spec, va_list arg)
@@ -44,5 +44,5 @@ int		put_s(t_conv_spec *conv_spec, va_list arg)
 		ft_putnstr(s, n_print);
 	if (conv_spec->flags & FLAG_M)
 		put_nchars(conv_spec->field - n_print, ' ');
-	return (MAX(n_print, conv_spec->field));
+	return (max(n_print, conv_spec->field));
 }

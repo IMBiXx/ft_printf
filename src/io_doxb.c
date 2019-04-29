@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 08:30:29 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 09:11:28 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int			put_d(t_conv_spec *cs, va_list arg)
 	ft_putl_zer_base(d, n_zeroes, cs->flags, 10);
 	if (cs->flags & FLAG_M)
 		put_nchars(cs->field - num_size, ' ');
-	return (MAX(num_size, cs->field));
+	return (max(num_size, cs->field));
 }
 
 int			put_x(t_conv_spec *cs, va_list arg)
@@ -47,7 +47,7 @@ int			put_x(t_conv_spec *cs, va_list arg)
 	ft_putl_zer_base_u(d, n_zeroes, cs->type == 'X', 16);
 	if (cs->flags & FLAG_M)
 		put_nchars(cs->field - num_size, ' ');
-	return (MAX(num_size, cs->field));
+	return (max(num_size, cs->field));
 }
 
 int			put_o(t_conv_spec *cs, va_list arg)
@@ -67,7 +67,7 @@ int			put_o(t_conv_spec *cs, va_list arg)
 	ft_putl_zer_base_u(d, n_zeroes, 0, 8);
 	if (cs->flags & FLAG_M)
 		put_nchars(cs->field - num_size, ' ');
-	return (MAX(num_size, cs->field));
+	return (max(num_size, cs->field));
 }
 
 int			put_b(t_conv_spec *cs, va_list arg)
@@ -87,5 +87,5 @@ int			put_b(t_conv_spec *cs, va_list arg)
 	ft_putl_zer_base_u(d, n_zeroes, 0, 2);
 	if (cs->flags & FLAG_M)
 		put_nchars(cs->field - num_size, ' ');
-	return (MAX(num_size, cs->field));
+	return (max(num_size, cs->field));
 }

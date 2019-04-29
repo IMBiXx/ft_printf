@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:34:02 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 08:09:21 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 09:12:45 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,5 @@ void		ft_put_conv_spec(t_conv_spec *cspec, va_list arg, int *c)
 	if (cspec->type == 'b' || cspec->type == 'B')
 		*c += put_b(cspec, arg);
 	if (cspec->type == '%')
-	{
-		ft_putchar('%');
-		*c += 1;
-	}
+		*c += put_perc(cspec);
 }
