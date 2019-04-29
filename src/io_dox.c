@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 05:55:53 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 07:54:06 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			put_d(t_conv_spec *cs, va_list arg)
 {
-	long long	d;
+	long long		d;
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
@@ -32,7 +32,7 @@ int			put_d(t_conv_spec *cs, va_list arg)
 
 int			put_x(t_conv_spec *cs, va_list arg)
 {
-	long long	d;
+	long long		d;
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
@@ -69,4 +69,3 @@ int			put_o(t_conv_spec *cs, va_list arg)
 		put_nchars(cs->field - num_size, ' ');
 	return (MAX(num_size, cs->field));
 }
-

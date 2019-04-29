@@ -6,13 +6,11 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:59:02 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 04:53:53 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 07:54:17 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-#include <stdio.h> // remove stp
 
 int		put_c(t_conv_spec *conv_spec, va_list arg)
 {

@@ -6,13 +6,13 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/18 14:36:18 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 03:58:55 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 07:54:32 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char * restrict format, ...)
+int		ft_printf(const char *restrict format, ...)
 {
 	va_list	arg;
 	int		ret;
