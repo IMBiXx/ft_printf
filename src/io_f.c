@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:53:35 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 15:34:34 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 16:26:42 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,24 @@ int			put_f(t_conv_spec *cs, va_list arg)
 	if (!(cs->flags & FLAG_M))
 		put_nchars(cs->field - num_size, cs->flags & FLAG_0 ? '0' : ' ');
 	if (cs->flags & (FLAG_SP | FLAG_P))
-		ft_putchar(cs->flags & FLAG_P ? '+' : ' ');
+		if (f >= 0)
+			ft_putchar(cs->flags & FLAG_P ? '+' : ' ');
+	tmp = f;
+	if (cs->precision == 0)
+	{
+		if ((unsigned long long)((tmp = tmp * 10
+						- (((unsigned long long)tmp / 10) * 10))) % 10 >= 5)
+		{
+			if (f >= 0)
+				f++;
+			else
+				f--;
+		}
+	}
 	ft_putnbr((int)f);
 	f *= f > 0 ? 1 : -1;
 	n = 0;
-	if (cs->precision > 0)
+	if (cs->precision >= 0)
 	{
 		f -= (unsigned long long)f;
 		tmp = f;
