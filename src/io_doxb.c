@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 11:49:14 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 16:56:51 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int			put_d(t_conv_spec *cs, va_list arg)
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
+	if (cs->type == 'D')
+		cs->modifier = MOD_L;
 	d = get_arg_int(cs, arg);
 	num_size = (cs->precision || d) ? num_len_base(d, 10) : 0;
 	n_zeroes = cs->precision > (int)num_size ? cs->precision - num_size : 0;
@@ -86,13 +88,15 @@ int			put_o(t_conv_spec *cs, va_list arg)
 	unsigned int	num_size;
 	unsigned int	n_zeroes;
 
+	if (cs->type == 'O')
+		cs->modifier = MOD_L;
 	d = get_arg_uint(cs, arg);
 	num_size = (cs->precision || d) ? num_len_base_u(d, 8) : 0;
-	n_zeroes = cs->precision > (int)num_size ? cs->precision - num_size : 0;
-	num_size += n_zeroes + (cs->flags & FLAG_SH ? 1 : 0);
+	n_zeroes = (cs->precision > (int)num_size ? cs->precision - num_size : 0);
+	num_size += n_zeroes + (cs->flags & FLAG_SH && d ? 1 : 0);
 	if (!(cs->flags & FLAG_M) && !(cs->flags & FLAG_0 && cs->precision < 0))
 		put_nchars(cs->field - num_size, ' ');
-	if (cs->flags & FLAG_SH)
+	if (cs->flags & FLAG_SH && d)
 		ft_putchar('0');
 	if (!(cs->flags & FLAG_M) && cs->flags & FLAG_0 && cs->precision < 0)
 		put_nchars(cs->field - num_size, '0');

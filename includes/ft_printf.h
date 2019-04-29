@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 11:46:19 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 14:48:06 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,11 @@ typedef enum		e_mods
 # define FLAG_P		(1 << _FLAG_P)
 # define FLAG_SP		(1 << _FLAG_SP)
 
-# define CONV_CHARS	"cspdiouUxXf%kKbBp"
+# define CONV_CHARS	"cspdDioOuUxXfkKbBp"
 # define FLAG_CHARS	"#0-+ "
 # define MOD_CHARS	"lhLjz"
 # define DIGITS		"0123456789"
-# define VALID_CHRS	(FLAG_CHARS MOD_CHARS DIGITS ".")
+# define VALID_CHRS	(FLAG_CHARS MOD_CHARS DIGITS ".*")
 
 # define K_COL_MSK	0xffffffUL
 
@@ -111,7 +111,7 @@ int					put_s(t_conv_spec *cs, va_list arg);
 int					put_f(t_conv_spec *cs, va_list arg);
 int					put_k(t_conv_spec *cs, va_list arg);
 int					put_b(t_conv_spec *cs, va_list arg);
-int					put_perc(t_conv_spec *cs);
+int					put_other(t_conv_spec *cs);
 int					put_r(t_conv_spec *cs, va_list arg);
 
 void				put_nchars(int n, char c);

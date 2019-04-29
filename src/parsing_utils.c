@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 08:44:44 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 11:43:27 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 16:15:10 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,40 @@ void		parse_flags(t_conv_spec *cs, char *fmt, size_t *i)
 
 void		parse_field(t_conv_spec *cs, char *fmt, size_t *i, va_list arg)
 {
-	if (fmt[*i] == '*')
+	int	tmp;
+
+	while (ft_isdigit(fmt[*i]) || fmt[*i] == '*')
 	{
-		cs->field = va_arg(arg, int);
-		(*i)++;
+		if (ft_isdigit(fmt[*i]))
+		{
+			cs->field = ft_atoi_len(fmt, i);
+		}
+		if (fmt[*i] == '*')
+		{
+			tmp = va_arg(arg, int);
+			if (tmp < 0)
+			{
+				cs->flags |= FLAG_M;
+				tmp = -tmp;
+			}
+			cs->field = tmp;
+			(*i)++;
+		}
 	}
-	if (ft_isdigit(fmt[*i]))
-		cs->field = ft_atoi_len(fmt, i);
 }
 
 void		parse_precision(t_conv_spec *cs, char *fmt, size_t *i, va_list arg)
 {
+	int	tmp;
+
 	if (fmt[*i] == '.')
 	{
 		(*i)++;
 		if (fmt[*i] == '*')
 		{
-			cs->precision = va_arg(arg, int);
+			tmp = va_arg(arg, int);
+			if (tmp >= 0)
+				cs->precision = tmp;
 			(*i)++;
 		}
 		else

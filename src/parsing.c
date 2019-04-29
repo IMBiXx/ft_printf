@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:28:39 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 11:57:00 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 12:04:13 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,22 @@ void		parse_conv_spec(t_conv_spec *cs, char *fmt, va_list arg)
 	parse_modifiers(cs, fmt, &i);
 }
 
+size_t		put_until(char *str, char c)
+{
+	size_t s;
+
+	s = 0;
+	while (str[s] && str[s] != c)
+		s++;
+	write(1, str, s);
+	return (s);
+}
+
 int			parse_print_format(char *format, va_list arg)
 {
 	t_conv_spec	cspec;
 	int			n;
+	size_t		t;
 
 	n = 0;
 	while (*format)
@@ -61,8 +73,9 @@ int			parse_print_format(char *format, va_list arg)
 		}
 		else
 		{
-			ft_putchar(*(format++));
-			n++;
+			t = put_until(format, '%');
+			format += t;
+			n += t;
 		}
 	}
 	return (n);
