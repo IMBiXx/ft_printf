@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/25 18:24:14 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 04:52:48 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,23 @@ typedef enum		e_mods
 # define FLAG_M		(1 << _FLAG_M)
 # define FLAG_P		(1 << _FLAG_P)
 
-# define CONV_CHARS	"cspdiouxX"
+# define CONV_CHARS	"cspdiouxXf"
 # define FLAG_CHARS	"#0-+"
 # define MOD_CHARS	"lhL"
 
 typedef struct		s_conv_spec
 {
 	int				flags;
-	int				field;
-	int				precision;
+	unsigned int	field;
+	unsigned int	precision;
 	char			modifier;
 	char			type;
-	int				arg_index;
 	int				size;
 }					t_conv_spec;
 
 int					ft_printf(const char * restrict format, ...);
 
-t_list				*parse_format(char *format);
+int					parse_print_format(char *format, va_list arg);
 
 size_t				num_len_base(long long n, int base);
 size_t				num_len_base_u(unsigned long long n, int base);
@@ -71,15 +70,14 @@ long long			get_arg_int(t_conv_spec *cspec, va_list arg);
 long double			get_arg_float(t_conv_spec *cspec, va_list arg);
 long long			get_arg_uint(t_conv_spec *cspec, va_list arg);
 
-void				ft_put_conv_spec(t_conv_spec *cspec, void *args,
-		int *count);
-t_conv_spec			*parse_conv_spec(char *format);
-int					put_d(t_conv_spec *cspec, va_list arg);
-int					put_x(t_conv_spec *cspec, va_list arg);
-int					put_o(t_conv_spec *cspec, va_list arg);
-int					put_s(t_conv_spec *conv_spec, long long *args);
+void				ft_put_conv_spec(t_conv_spec *cspec, va_list arg, int *c);
+
+int					put_d(t_conv_spec *cs, va_list arg);
+int					put_x(t_conv_spec *cs, va_list arg);
+int					put_o(t_conv_spec *cs, va_list arg);
+int					put_c(t_conv_spec *cs, va_list arg);
+int					put_s(t_conv_spec *cs, va_list arg);
 void				put_nchars(int n, char c);
 long long			cast_long_long(t_conv_spec *cspec, long long val);
-int					put_c(t_conv_spec *conv_spec, long long *args);
 
 #endif

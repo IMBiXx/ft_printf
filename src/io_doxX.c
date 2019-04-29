@@ -6,70 +6,70 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/25 18:22:10 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 04:50:11 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int			put_d(t_conv_spec *cspec, va_list arg)
+int			put_d(t_conv_spec *cs, va_list arg)
 {
 	long long	d;
-	int			num_size;
-	int			n_zeroes;
+	unsigned int	num_size;
+	unsigned int	n_zeroes;
 
-	d = get_arg_int(cspec, arg);
+	d = get_arg_int(cs, arg);
 	num_size = num_len_base(d, 10);
-	n_zeroes = (cspec->precision - num_size > 0 ? cspec->precision
-		- num_size : 0);
-	num_size += n_zeroes + (d < 0 || cspec->flags & FLAG_P ? 1 : 0);
-	if (!(cspec->flags & FLAG_M))
-		put_nchars(cspec->field - num_size, ' ');
-	ft_putl_zer_base(d, n_zeroes, cspec->flags & FLAG_P, 10);
-	if (cspec->flags & FLAG_M)
-		put_nchars(cspec->field - num_size, ' ');
-	return (MAX(num_size, cspec->field));
+	n_zeroes = (cs->precision - num_size) > 0 ? cs->precision
+		- num_size : 0;
+	num_size += n_zeroes + (d < 0 || cs->flags & FLAG_P ? 1 : 0);
+	if (!(cs->flags & FLAG_M))
+		put_nchars(cs->field - num_size, ' ');
+	ft_putl_zer_base(d, n_zeroes, cs->flags & FLAG_P, 10);
+	if (cs->flags & FLAG_M)
+		put_nchars(cs->field - num_size, ' ');
+	return (MAX(num_size, cs->field));
 }
 
-int			put_x(t_conv_spec *cspec, va_list arg)
+int			put_x(t_conv_spec *cs, va_list arg)
 {
 	long long	d;
-	int			num_size;
-	int			n_zeroes;
+	unsigned int	num_size;
+	unsigned int	n_zeroes;
 
-	d = get_arg_int(cspec, arg);
+	d = get_arg_int(cs, arg);
 	num_size = num_len_base_u(d, 16);
-	n_zeroes = (cspec->precision - num_size > 0 ? cspec->precision
-		- num_size : 0);
-	num_size += n_zeroes + cspec->flags & FLAG_SH ? 2 : 0;
-	if (!(cspec->flags & FLAG_M))
-		put_nchars(cspec->field - num_size, ' ');
-	if (cspec->flags & FLAG_SH)
-		ft_putstr(cspec->type == 'X' ? "0X" : "0x");
-	ft_putl_zer_base_u(d, n_zeroes, cspec->type == 'X', 16);
-	if (cspec->flags & FLAG_M)
-		put_nchars(cspec->field - num_size, ' ');
-	return (MAX(num_size, cspec->field));
+	n_zeroes = (cs->precision - num_size > 0) ? cs->precision
+		- num_size : 0;
+	num_size += n_zeroes + (cs->flags & FLAG_SH ? 2 : 0);
+	if (!(cs->flags & FLAG_M))
+		put_nchars(cs->field - num_size, ' ');
+	if (cs->flags & FLAG_SH)
+		ft_putstr(cs->type == 'X' ? "0X" : "0x");
+	ft_putl_zer_base_u(d, n_zeroes, cs->type == 'X', 16);
+	if (cs->flags & FLAG_M)
+		put_nchars(cs->field - num_size, ' ');
+	return (MAX(num_size, cs->field));
 }
 
-int			put_o(t_conv_spec *cspec, va_list arg)
+int			put_o(t_conv_spec *cs, va_list arg)
 {
-	long long	d;
-	int			num_size;
-	int			n_zeroes;
+	long long		d;
+	unsigned int	num_size;
+	unsigned int	n_zeroes;
 
-	d = get_arg_int(cspec, arg);
+	d = get_arg_int(cs, arg);
 	num_size = num_len_base_u(d, 8);
-	n_zeroes = (cspec->precision - num_size > 0 ? cspec->precision
-		- num_size : 0);
-	num_size += n_zeroes + cspec->flags & FLAG_SH ? 2 : 0;
-	if (!(cspec->flags & FLAG_M))
-		put_nchars(cspec->field - num_size, ' ');
-	if (cspec->flags & FLAG_SH)
+	n_zeroes = (cs->precision - num_size > 0) ? cs->precision
+		- num_size : 0;
+	num_size += n_zeroes + (cs->flags & FLAG_SH ? 1 : 0);
+	if (!(cs->flags & FLAG_M))
+		put_nchars(cs->field - num_size, ' ');
+	if (cs->flags & FLAG_SH)
 		ft_putchar('0');
 	ft_putl_zer_base_u(d, n_zeroes, 0, 8);
-	if (cspec->flags & FLAG_M)
-		put_nchars(cspec->field - num_size, ' ');
-	return (MAX(num_size, cspec->field));
+	if (cs->flags & FLAG_M)
+		put_nchars(cs->field - num_size, ' ');
+	return (MAX(num_size, cs->field));
 }
 

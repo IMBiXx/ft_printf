@@ -6,116 +6,144 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:28:39 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/25 18:18:07 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 04:50:43 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-t_conv_spec	*parse_conv_spec(char *fmt)
+void		init_conv_spec(t_conv_spec *cs)
 {
-	t_conv_spec		*cspec;
-	unsigned int	i;
-	long			tmp;
-	char			precision;
+	cs->flags = 0;
+	cs->modifier = MOD_NONE;
+	cs->field = 0;
+	cs->precision = 0;
+	cs->precision = cs->type == 'f' ? 6 : cs->precision;
+	cs->precision = cs->type == 's' ? -1 : cs->precision;
+}
 
-	precision = 0;
-	tmp = 0;
-	i = 0;
-	if (!(cspec = (t_conv_spec*)malloc(sizeof(t_conv_spec))))
-		return (NULL);
-	cspec->type = 0;
-	cspec->precision = 1;
-	cspec->field = 0;
-	cspec->arg_index = 0;
-	cspec->modifier = MOD_NONE;
-	while (!ft_strchr(CONV_CHARS, fmt[i])) // == CONV_CHARS ?
+#include <stdio.h> // REMOVE
+void	disp_conv_spec(t_conv_spec *cs)
+{
+	printf("Flags:\n");
+	if (cs->flags & FLAG_SH)
+		printf("- FLAG_SH\n");
+	if (cs->flags & FLAG_0)
+		printf("- FLAG_0\n");
+	if (cs->flags & FLAG_M)
+		printf("- FLAG_M\n");
+	if (cs->flags & FLAG_P)
+		printf("- FLAG_P\n");
+	printf("Field: %d\n", cs->field);
+	printf("Precision: %d\n", cs->precision);
+	printf("Modifiers:\n");
+	if (cs->modifier == MOD_HH)
+		printf("- MOD_HH\n");
+	if (cs->modifier == MOD_H)
+		printf("- MOD_H\n");
+	if (cs->modifier == MOD_NONE)
+		printf("- MOD_NONE\n");
+	if (cs->modifier == MOD_L)
+		printf("- MOD_L\n");
+	if (cs->modifier == MOD_LL)
+		printf("- MOD_LL\n");
+	printf("Type: %c\n", cs->type);
+	printf("Size: %d\n", cs->size);
+}
+
+void		first_pass(t_conv_spec *cs, char *fmt)
+{
+	cs->size = 0;
+	while (!ft_strchr(CONV_CHARS, fmt[cs->size]))
+		cs->size++;
+	cs->type = fmt[cs->size++];
+	init_conv_spec(cs);
+}
+
+void		parse_flags(t_conv_spec *cs, char *fmt, size_t *i)
+{
+	while (ft_strchr(FLAG_CHARS, fmt[*i]))
 	{
-		cspec->size = i;
-		if (ft_isdigit(fmt[i]))
-			tmp = ft_atoi_len(fmt, &i);
-		if (fmt[i] == '$')
-		{
-			if (tmp == 0)
-				return (cspec);
-			cspec->arg_index = tmp - 1;
-			tmp = 0;
-		}
-		if (fmt[i] == '.')
-		{
-			cspec->field = tmp;
-			precision = 1;
-			tmp = 1;
-		}
-		if (ft_strchr(FLAG_CHARS, fmt[i]))
-		{
-			cspec->flags |= fmt[i] == '#' ? FLAG_SH : 0;
-			cspec->flags |= fmt[i] == '0' ? FLAG_0 : 0;
-			cspec->flags |= fmt[i] == '-' ? FLAG_M : 0;
-			cspec->flags |= fmt[i] == '+' ? FLAG_P : 0;
-		}
-		if (ft_strchr(MOD_CHARS, fmt[i]))
-		{
-			if (fmt[i] == 'l')
-				cspec->modifier = fmt[i + 1] == 'l' ? MOD_LL : MOD_L;
-			if (fmt[i] == 'h')
-				cspec->modifier = fmt[i + 1] == 'h' ? MOD_HH : MOD_H;
-			cspec->modifier = fmt[i] == 'L' ? MOD_LLL : cspec->modifier;
-			if (cspec->modifier == MOD_HH || cspec->modifier == MOD_LL)
-				i++;
-		}
-		i++;
+		cs->flags |= fmt[*i] == '#' ? FLAG_SH : 0;
+		cs->flags |= fmt[*i] == '0' ? FLAG_0 : 0;
+		cs->flags |= fmt[*i] == '-' ? FLAG_M : 0;
+		cs->flags |= fmt[*i] == '+' ? FLAG_P : 0;
+		(*i)++;
 	}
-	if (precision == 0)
-		cspec->field = tmp;
-	else
-		cspec->precision = tmp;
-	cspec->type = fmt[i];
-	return (cspec);
 }
 
-int			lst_push_ordered(t_list **lst, t_conv_spec *spec)
+void		parse_field(t_conv_spec *cs, char *fmt, size_t *i, va_list arg)
 {
-	t_list	*elem;
-	t_list	*new;
-
-	if (!lst)
-		return (0);
-	elem = *lst;
-	while (elem && elem->next && ((t_conv_spec *)elem->content)->arg_index <= spec->arg_index)
-		elem = elem->next;
-	if (!(new = ft_lstnew(spec, sizeof(t_conv_spec))))
-		return (0);
-	if (*lst)
-		elem->next = new;
-	else
-		*lst = new;
-	return (1);
+	if (fmt[*i] == '*')
+		cs->field = va_arg(arg, int);
+	if (ft_isdigit(fmt[*i]))
+		cs->field = ft_atoi_len(fmt, i);
 }
 
-t_list		*parse_format(char *format)
+void		parse_precision(t_conv_spec *cs, char *fmt, size_t *i, va_list arg)
 {
-	t_list		*lst;
-	t_conv_spec	*cspec;
+	if (fmt[*i] == '.')
+	{
+		(*i)++;
+		if (fmt[*i] == '*')
+		{
+			cs->precision = va_arg(arg, int);
+			(*i)++;
+		}
+		else
+			cs->precision = ft_atoi_len(fmt, i);
+	}
+}
 
-	lst = NULL;
+void		parse_modifiers(t_conv_spec *cs, char *fmt, size_t *i)
+{
+	if (ft_strchr(MOD_CHARS, fmt[*i]))
+	{
+		if (fmt[*i] == 'l')
+			cs->modifier = fmt[*i + 1] == 'l' ? MOD_LL : MOD_L;
+		if (fmt[*i] == 'h')
+			cs->modifier = fmt[*i + 1] == 'h' ? MOD_HH : MOD_H;
+		cs->modifier = fmt[*i] == 'L' ? MOD_LLL : cs->modifier;
+		if (cs->modifier == MOD_HH || cs->modifier == MOD_LL)
+			(*i)++;
+	}
+	(*i)++;
+}
+
+void		parse_conv_spec(t_conv_spec *cs, char *fmt, va_list arg)
+{
+	size_t	i;
+
+	i = 0;
+	first_pass(cs, fmt);
+	parse_flags(cs, fmt, &i);
+	parse_field(cs, fmt, &i, arg);
+	parse_precision(cs, fmt, &i, arg);
+	parse_modifiers(cs, fmt, &i);
+}
+
+int			parse_print_format(char *format, va_list arg)
+{
+	t_conv_spec	cspec;
+	int			n;
+
+	n = 0;
 	while (*format)
 	{
 		if (*format == '%')
 		{
-			cspec = parse_conv_spec(format + 1);
-			if (!(lst_push_ordered(&lst, cspec)))
-			{
-				free(cspec);
-				return (NULL);
-			}
-			format += cspec->size;
-			free(cspec);
+			parse_conv_spec(&cspec, format + 1, arg);
+			//disp_conv_spec(&cspec);
+			ft_put_conv_spec(&cspec, arg, &n);
+			format += cspec.size + 1;
 		}
 		else
-			format++;
+		{
+			ft_putchar(*(format++));
+			n++;
+		}
 	}
-	return (lst);
+	return (n);
 }
 

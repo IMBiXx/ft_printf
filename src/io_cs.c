@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:59:02 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 17:26:27 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 04:53:53 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 #include <stdio.h> // remove stp
 
-int		put_c(t_conv_spec *conv_spec, long long *args)
+int		put_c(t_conv_spec *conv_spec, va_list arg)
 {
 	char			c;
 
-	c = (char)(args[conv_spec->arg_index]);
+	c = (char)va_arg(arg, int);
 	if (!(conv_spec->flags & FLAG_M))
 		put_nchars(conv_spec->field - 1, ' ');
 	ft_putchar(c);
@@ -27,25 +27,25 @@ int		put_c(t_conv_spec *conv_spec, long long *args)
 	return (MAX(1, conv_spec->field));
 }
 
-int		put_s(t_conv_spec *conv_spec, long long *args)
+int		put_s(t_conv_spec *conv_spec, va_list arg)
 {
 	size_t			str_size;
 	char			*s;
 	unsigned int	n_print;
 
 	n_print = 0;
-	s = (char*)(args[conv_spec->arg_index]);
+	s = va_arg(arg, char *);
 	str_size = ft_strlen(s);
-	if (conv_spec->precision < (int)str_size)
+	if (conv_spec->precision < str_size)
 		n_print = conv_spec->precision;
 	else
 		n_print = str_size;
 	if (!(conv_spec->flags & FLAG_M))
 		put_nchars(conv_spec->field - n_print, ' ');
-	printf("conv_spec->precision: %d\n", conv_spec->precision);
 	if (conv_spec->precision > 0)
 		ft_putnstr(s, n_print);
 	if (conv_spec->flags & FLAG_M)
 		put_nchars(conv_spec->field - n_print, ' ');
-	return (MAX((int)n_print, conv_spec->field));
+	ft_putnbr(n_print);
+	return (MAX(n_print, conv_spec->field));
 }

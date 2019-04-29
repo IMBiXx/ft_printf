@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include "ft_printf.h"
+
+int	main(int ac, char **av)
+{
+	int	k;
+
+	if (ac != 2)
+		return (-1);
+	ft_putstr("Mine: |");
+	k = ft_printf(av[1], 'A', 42, 42.0f, "hello world", 4242424242424242);
+	ft_putstr("| (");
+	ft_putnbr(k);
+	ft_putstr(")\nOrig: |");
+	k = printf(av[1], 'A', 42, 42.0f, "hello world", 4242424242424242);
+	printf("| (%d)\n", k);
+	return (0);
+}

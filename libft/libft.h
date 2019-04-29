@@ -6,7 +6,7 @@
 /*   By: Valentin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 16:26:24 by Valentin          #+#    #+#             */
-/*   Updated: 2019/04/24 16:41:22 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 03:44:45 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void				ft_sort_integer_table(int *tab, int size);
 void				ft_putnbr_base(int nbr, char *base);
 char				**ft_split_whitespaces(char *str);
 char				*ft_search_and_replace(char *str, char a, char b);
-long				ft_atoi_len(const char *str, unsigned int *i);
+long				ft_atoi_len(const char *str, size_t *i);
 void				ft_putnstr(const char *str, size_t);
 
 #endif

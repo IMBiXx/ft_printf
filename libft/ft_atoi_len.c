@@ -6,13 +6,13 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 14:46:29 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/24 15:08:47 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 04:25:46 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long		ft_atoi_len(const char *str, unsigned int *i)
+long		ft_atoi_len(const char *str, size_t *i)
 {
 	long	ret;
 
@@ -22,6 +22,5 @@ long		ft_atoi_len(const char *str, unsigned int *i)
 		ret = (ret * 10) + str[*i] - 48;
 		(*i)++;
 	}
-	(*i)--;
 	return (ret);
 }

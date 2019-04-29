@@ -6,24 +6,23 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 18:34:02 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/24 17:38:15 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 04:55:35 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft.h"
 
-#include <stdio.h> // remove pls
-void		ft_put_conv_spec(t_conv_spec *cspec, void *args, int *count)
+void		ft_put_conv_spec(t_conv_spec *cspec, va_list arg, int *c)
 {
 	if (cspec->type == 'd' || cspec->type == 'i')
-		*count += put_d(cspec, args);
+		*c += put_d(cspec, arg);
 	if (cspec->type == 's')
-		*count += put_s(cspec, args);
+		*c += put_s(cspec, arg);
 	if (cspec->type == 'o')
-		*count += put_o(cspec, args);
+		*c += put_o(cspec, arg);
 	if (cspec->type == 'c')
-		*count += put_c(cspec, args);
+		*c += put_c(cspec, arg);
 	if (cspec->type == 'x' || cspec->type == 'X')
-		*count += put_x(cspec, args);
+		*c += put_x(cspec, arg);
 }
