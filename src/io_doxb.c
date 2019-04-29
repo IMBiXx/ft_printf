@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 10:14:27 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 10:36:03 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int			put_d(t_conv_spec *cs, va_list arg)
 	d = get_arg_int(cs, arg);
 	num_size = (cs->precision || d) ? num_len_base(d, 10) : 0;
 	n_zeroes = cs->precision > (int)num_size ? cs->precision - num_size : 0;
-	num_size += n_zeroes + (d < 0 || cs->flags & FLAG_P || cs->flags & FLAG_SP ? 1 : 0);
+	num_size += n_zeroes + (d < 0 || cs->flags & FLAG_P
+			|| cs->flags & FLAG_SP ? 1 : 0);
 	if (!(cs->flags & FLAG_M) && !(cs->flags & FLAG_0 && cs->precision < 0))
 		put_nchars(cs->field - num_size, ' ');
 	if (!(cs->flags & FLAG_M) && cs->flags & FLAG_0 && cs->precision < 0)

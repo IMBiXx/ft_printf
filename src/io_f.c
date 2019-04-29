@@ -6,60 +6,12 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:53:35 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 09:38:53 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 10:34:10 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
-
-/*void			display_pre_float(float f, int *count)
-{
-	if (f < 10)
-	{
-		ft_putchar(f + '0');
-	}
-	else
-	{
-		display_pre_float(f / 10, count);
-		ft_putchar(((int)f % 10) + '0');
-		(*count)++;
-	}
-}
-
-void			display_post_float(int n, int *count)
-{
-	char	*ret;
-
-	ret = ft_itoa(n);
-	ft_putstr(&ret[*count]);
-	free(ret);
-}
-
-int		mainnnnn(void)
-{
-	float	f = -420.1234;
-	long	i = 0;
-	long	precision = 6;
-	float	tmp = f;
-	int		count = 1;
-
-	if (f < 0)
-	{
-		ft_putchar('-');
-		count++;
-		f = -f;
-	}
-	display_pre_float(f, &count);
-	ft_putchar('.');
-	while (i < precision)
-	{
-		tmp = tmp * 10;
-		i++;
-	}
-	display_post_float((int)tmp, &count);
-	return (0);
-}*/
 
 int			put_f(t_conv_spec *cs, va_list arg)
 {
