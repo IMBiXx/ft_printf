@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 08:21:52 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 08:37:30 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef enum		e_mods
 # define FLAG_P		(1 << _FLAG_P)
 # define FLAG_SP		(1 << _FLAG_SP)
 
-# define CONV_CHARS	"cspdiouxXf%kKbB"
+# define CONV_CHARS	"cspdiouxXf%kKbBp"
 # define FLAG_CHARS	"#0-+ "
 # define MOD_CHARS	"lhL"
 
