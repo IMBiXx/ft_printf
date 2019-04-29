@@ -6,14 +6,14 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:53:35 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 06:12:17 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 07:59:28 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-void			display_pre_float(float f, int *count)
+/*void			display_pre_float(float f, int *count)
 {
 	if (f < 10)
 	{
@@ -59,7 +59,7 @@ int		mainnnnn(void)
 	}
 	display_post_float((int)tmp, &count);
 	return (0);
-}
+}*/
 
 int			put_f(t_conv_spec *cs, va_list arg)
 {

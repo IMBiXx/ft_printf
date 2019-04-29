@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:28:39 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 05:44:35 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 07:57:32 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,6 @@ void		init_conv_spec(t_conv_spec *cs)
 	cs->precision = 0;
 	cs->precision = cs->type == 'f' ? 6 : cs->precision;
 	cs->precision = cs->type == 's' ? -1 : cs->precision;
-}
-
-#include <stdio.h> // REMOVE
-void	disp_conv_spec(t_conv_spec *cs)
-{
-	printf("Flags:\n");
-	if (cs->flags & FLAG_SH)
-		printf("- FLAG_SH\n");
-	if (cs->flags & FLAG_0)
-		printf("- FLAG_0\n");
-	if (cs->flags & FLAG_M)
-		printf("- FLAG_M\n");
-	if (cs->flags & FLAG_P)
-		printf("- FLAG_P\n");
-	printf("Field: %d\n", cs->field);
-	printf("Precision: %d\n", cs->precision);
-	printf("Modifiers:\n");
-	if (cs->modifier == MOD_HH)
-		printf("- MOD_HH\n");
-	if (cs->modifier == MOD_H)
-		printf("- MOD_H\n");
-	if (cs->modifier == MOD_NONE)
-		printf("- MOD_NONE\n");
-	if (cs->modifier == MOD_L)
-		printf("- MOD_L\n");
-	if (cs->modifier == MOD_LL)
-		printf("- MOD_LL\n");
-	printf("Type: %c\n", cs->type);
-	printf("Size: %d\n", cs->size);
 }
 
 void		first_pass(t_conv_spec *cs, char *fmt)
@@ -137,7 +108,6 @@ int			parse_print_format(char *format, va_list arg)
 		if (*format == '%')
 		{
 			parse_conv_spec(&cspec, format + 1, arg);
-			//disp_conv_spec(&cspec);
 			ft_put_conv_spec(&cspec, arg, &n);
 			format += cspec.size + 1;
 		}
@@ -149,4 +119,3 @@ int			parse_print_format(char *format, va_list arg)
 	}
 	return (n);
 }
-

@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:06:17 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/24 17:07:14 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 07:56:45 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ void		put_nchars(int n, char c)
 		ft_putchar(c);
 }
 
-/* put a long with a given base padded with zeroes */
-/* zer = amount of zeroes */
-/* f_sgn = force the sign display */
-/* cas = true -> chars must be uppercase */
-/* b = base */
-
 void		ft_putl_zer_base(long long n, int zer, char f_sgn, int b)
 {
 	unsigned long long	numb;
@@ -59,8 +53,6 @@ void		ft_putl_zer_base(long long n, int zer, char f_sgn, int b)
 		ft_putl_zer_base(numb / b, 0, 0, b);
 	ft_putchar(digits[numb % b]);
 }
-
-/*unsigned version of ft_putl_zer_base*/
 
 void		ft_putl_zer_base_u(unsigned long long n, int zer, int cas, int b)
 {
