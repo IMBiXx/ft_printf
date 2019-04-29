@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:59:02 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 11:07:28 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/29 11:24:38 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int		put_c(t_conv_spec *cs, va_list arg)
 	char			c;
 
 	c = (char)va_arg(arg, int);
-	if (!(cs->flags & FLAG_M))
+	if (!(cs->flags & FLAG_M) && !(cs->flags & FLAG_0))
 		put_nchars(cs->field - 1, ' ');
+	if (!(cs->flags & FLAG_M) && cs->flags & FLAG_0)
+		put_nchars(cs->field - 1, '0');
 	ft_putchar(c);
 	if (cs->flags & FLAG_M)
 		put_nchars(cs->field - 1, ' ');
@@ -38,8 +40,10 @@ int		put_s(t_conv_spec *cs, va_list arg)
 		n_print = cs->precision;
 	else
 		n_print = str_size;
-	if (!(cs->flags & FLAG_M))
+	if (!(cs->flags & FLAG_M) && !(cs->flags & FLAG_0))
 		put_nchars(cs->field - n_print, ' ');
+	if (!(cs->flags & FLAG_M) && cs->flags & FLAG_0)
+		put_nchars(cs->field - n_print, '0');
 	if (cs->precision != 0)
 		ft_putnstr(s ? s : "(null)", n_print);
 	if (cs->flags & FLAG_M)
