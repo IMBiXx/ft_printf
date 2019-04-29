@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 10:11:42 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 10:52:16 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void				ft_put_conv_spec(t_conv_spec *cspec, va_list arg, int *c);
 int					put_d(t_conv_spec *cs, va_list arg);
 int					put_u(t_conv_spec *cs, va_list arg);
 int					put_x(t_conv_spec *cs, va_list arg);
+int					put_p(t_conv_spec *cs, va_list arg);
 int					put_o(t_conv_spec *cs, va_list arg);
 int					put_c(t_conv_spec *cs, va_list arg);
 int					put_s(t_conv_spec *cs, va_list arg);

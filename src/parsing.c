@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 16:28:39 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 09:35:27 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 10:51:39 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ void		init_conv_spec(t_conv_spec *cs)
 	cs->field = 0;
 	cs->precision = -1;
 	cs->precision = cs->type == 'f' ? 6 : cs->precision;
-	if (cs->type == 'p')
-	{
-		cs->type = 'x';
-		cs->flags |= FLAG_SH;
-		cs->modifier = MOD_L;
-	}
 }
 
 void		first_pass(t_conv_spec *cs, char *fmt)
