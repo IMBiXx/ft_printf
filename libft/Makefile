@@ -6,7 +6,7 @@
 #    By: tpotier <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/01 16:36:41 by tpotier           #+#    #+#              #
-#    Updated: 2019/04/30 17:31:15 by valecart         ###   ########.fr        #
+#    Updated: 2019/04/30 19:55:09 by valecart         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ FILES = ft_memset ft_bzero ft_memcpy ft_memccpy ft_memmove ft_memchr \
 		ft_putchar_fd ft_putchar ft_putstr_fd ft_putstr ft_putendl_fd \
 		ft_putendl ft_putnbr_fd ft_putnbr ft_itoa \
 		ft_lstnew ft_lstdelone ft_lstdel ft_lstadd ft_lstiter ft_lstmap \
-		ft_lstpushback ft_atoi_len ft_putnstr ft_putnchar
+		ft_lstpushback ft_atoi_len ft_putnstr ft_putnchar ft_num_len_base \
+		ft_num_len_base_u
 IFILES = libft.h
 NAME = libft.a
 

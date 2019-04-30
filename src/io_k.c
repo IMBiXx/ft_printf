@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 07:55:18 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 07:55:19 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/30 19:58:48 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ size_t		put_color(t_style style)
 
 	len = 0;
 	t = style >> 16 & 0xff;
-	len += num_len_base(t, 10);
+	len += ft_num_len_base(t, 10);
 	ft_putnbr(t);
 	ft_putchar(';');
 	t = style >> 8 & 0xff;
-	len += num_len_base(t, 10);
+	len += ft_num_len_base(t, 10);
 	ft_putnbr(t);
 	ft_putchar(';');
 	t = style & 0xff;
-	len += num_len_base(t, 10);
+	len += ft_num_len_base(t, 10);
 	ft_putnbr(t);
 	return (len);
 }

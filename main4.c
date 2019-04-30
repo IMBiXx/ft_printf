@@ -1,11 +1,9 @@
-#include <unistd.h>
-#include <wchar.h>
+#include <stdio.h>
 
 int main(void)
 {
-	wchar_t c;
-
-	c = 2600;
-	write(1, &c, 1);
+	printf("%d\n", -0.0 < -1e-308);
+	printf("%d\n", 0.0 == -0.0);
+	printf("%d\n", 0.0 == -0.0);
 	return (0);
 }

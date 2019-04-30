@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/30 17:37:35 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/30 19:56:33 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			put_d(t_conv_spec *cs, va_list arg)
 	if (cs->type == 'D')
 		cs->modifier = MOD_L;
 	d = get_arg_int(cs, arg);
-	num_size = (cs->precision || d) ? num_len_base(d, 10) : 0;
+	num_size = (cs->precision || d) ? ft_num_len_base(d, 10) : 0;
 	n_zeroes = cs->precision > (int)num_size ? cs->precision - num_size : 0;
 	num_size += n_zeroes + (d < 0 || cs->flags & FLAG_P
 			|| cs->flags & FLAG_SP ? 1 : 0);
@@ -47,7 +47,7 @@ int			put_u(t_conv_spec *cs, va_list arg)
 	if (cs->type == 'U')
 		cs->modifier = MOD_L;
 	d = get_arg_uint(cs, arg);
-	num_size = (cs->precision || d) ? num_len_base_u(d, 10) : 0;
+	num_size = (cs->precision || d) ? ft_num_len_base_u(d, 10) : 0;
 	n_zeroes = cs->precision > (int)num_size ? cs->precision - num_size : 0;
 	num_size += n_zeroes;
 	if (!(cs->flags & FLAG_M) && !(cs->flags & FLAG_0 && cs->precision < 0))
@@ -68,7 +68,7 @@ int			put_x(t_conv_spec *cs, va_list arg)
 	unsigned int	n_zeroes;
 
 	d = get_arg_uint(cs, arg);
-	num_size = (cs->precision || d) ? num_len_base_u(d, 16) : 0;
+	num_size = (cs->precision || d) ? ft_num_len_base_u(d, 16) : 0;
 	n_zeroes = cs->precision > (int)num_size ? cs->precision - num_size : 0;
 	num_size += n_zeroes + (cs->flags & FLAG_SH && d ? 2 : 0);
 	if (!(cs->flags & FLAG_M) && !(cs->flags & FLAG_0 && cs->precision < 0))
@@ -93,7 +93,7 @@ int			put_o(t_conv_spec *cs, va_list arg)
 	if (cs->type == 'O')
 		cs->modifier = MOD_L;
 	d = get_arg_uint(cs, arg);
-	num_size = (cs->precision || d) ? num_len_base_u(d, 8) : 0;
+	num_size = (cs->precision || d) ? ft_num_len_base_u(d, 8) : 0;
 	n_zeroes = (cs->precision > (int)num_size ? cs->precision - num_size : 0);
 	num_size += n_zeroes
 		+ (cs->flags & FLAG_SH && (!cs->precision || d) && !n_zeroes ? 1 : 0);
@@ -117,7 +117,7 @@ int			put_b(t_conv_spec *cs, va_list arg)
 	unsigned int	n_zeroes;
 
 	d = get_arg_uint(cs, arg);
-	num_size = (cs->precision || d) ? num_len_base_u(d, 2) : 0;
+	num_size = (cs->precision || d) ? ft_num_len_base_u(d, 2) : 0;
 	n_zeroes = cs->precision > (int)num_size ? cs->precision - num_size : 0;
 	num_size += n_zeroes + (cs->flags & FLAG_SH && d ? 2 : 0);
 	if (!(cs->flags & FLAG_M) && !(cs->flags & FLAG_0 && cs->precision < 0))

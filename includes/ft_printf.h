@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/29 14:48:06 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/30 20:04:24 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int					parse_print_format(char *format, va_list arg);
 size_t				num_len_base(long long n, int base);
 size_t				num_len_base_u(unsigned long long n, int base);
 void				ft_putl_zer_base(long long n, int zer, char f_sgn, int b);
+void				ft_putf_zer_base(long double n, int zer, char f_sgn, int b);
 void				ft_putl_zer_base_u(unsigned long long n, int zer, int cas,
 		int b);
 
