@@ -6,11 +6,19 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:06:17 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/30 20:08:50 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/30 23:02:05 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void		put_special(long double f)
+{
+	if (f == INFP || f == INFN)
+		ft_putstr("inf");
+	if (f != f)
+		ft_putstr("nan");
+}
 
 void		putstr_r(char *s, unsigned int size)
 {
@@ -52,15 +60,20 @@ void		ft_putf_zer_base(long double n, int zer, char f_sgn, int b)
 	long double		numb;
 	const char		digits[] = "0123456789abcdef";
 
-	if (n <= -0.0)
+	if (is_neg(n))
 		ft_putchar('-');
 	else if (f_sgn & (FLAG_P | FLAG_SP))
 		ft_putchar(f_sgn & FLAG_P ? '+' : ' ');
-	ft_putnchar('0', zer);
-	numb = (n <= -0.0) ? -n : n;
-	if (numb > (b - 1))
-		ft_putf_zer_base(numb / b, 0, 0, b);
-	ft_putchar(digits[(long long)numb % b]);
+	if (is_special(n))
+		put_special(n);
+	else
+	{
+		ft_putnchar('0', zer);
+		numb = (is_neg(n)) ? -n : n;
+		if (numb > (b - 1))
+			ft_putf_zer_base(numb / b, 0, 0, b);
+		ft_putchar(digits[(long long)numb % b]);
+	}
 }
 
 void		ft_putl_zer_base_u(unsigned long long n, int zer, int cas, int b)

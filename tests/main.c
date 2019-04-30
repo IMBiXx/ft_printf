@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 17:48:09 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/30 21:25:25 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/30 23:07:29 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -405,8 +405,12 @@ int		main(void)
 	printf("cl %12f|\n", nb);
 	ft_printf("my %-12f|\n", nb);
 	printf("cl %-12f|\n", nb);
-	ft_printf("my %5.9f|\n", nb);
-	printf("cl %5.9f|\n", nb);
+	ft_printf("my %05.9f|\n", nb);
+	printf("cl %05.9f|\n", nb);
+	ft_printf("my %0+5.9f|\n", nb);
+	printf("cl %0+5.9f|\n", nb);
+	ft_printf("my %#-5.9f|\n", nb);
+	printf("cl %#-5.9f|\n", nb);
 
     nb = -1.0/0.0;
 	ft_printf("my %f|\n", nb);
@@ -503,6 +507,52 @@ int		main(void)
 	printf("cl size + minus + plus + prec:%-+5.3f|\n", nb);
 	ft_printf("my size + minus + plus + prec + hash:%-#+5.0f|\n", nb);
 	printf("cl size + minus + plus + prec + hash:%-#+5.0f|\n", nb);
+
+
+	/* null prec float;*/
+
+	float		flo;
+	flo = 0;
+	printf("\n\n\n\ntest : null prec float%f|\n", flo);
+	ft_printf("my null prec : %+.0f\n", flo);
+	printf("cl null prec : %+.0f\n", flo);
+	flo = 13.5;
+	ft_printf("my null prec : %+.0f\n", flo);
+	printf("cl null prec : %+.0f\n", flo);
+	flo = -25632.2541;
+	ft_printf("my null prec : %+.0f\n", flo);
+	printf("cl null prec : %+.0f\n", flo);
+	flo = -1.0123;
+	ft_printf("my null prec : %+.0f\n", flo);
+	printf("cl null prec : %+.0f\n", flo);
+	flo = 12354.569874;
+	ft_printf("my null prec : %+.0f\n", flo);
+	printf("cl null prec : %+.0f\n", flo);
+	flo = 1.25;
+	ft_printf("my null prec : %+.1f\n", flo);
+	printf("cl null prec : %+.1f\n", flo);
+
+
+	/*return values 01*/
+	int		ans;
+	int		cor;
+	printf("\n\n\n\ntest : return values 01|\n");
+	printf("%d\n", printf("%c ", 'A'));
+	printf("%d\n", printf("%f ", 1235.123));
+	printf("%d\n", printf("%d ", 0));
+	printf("%d\n", printf("%x ", 56985));
+	printf("%d\n", ft_printf("%c ", 'A'));
+	printf("%d\n", ft_printf("%f ", 1235.123));
+	printf("%d\n", ft_printf("%d ", 0));
+	printf("%d\n", ft_printf("%x ", 56985));
+	/*ans = ft_printf("Okalmos : %c %f %d %x\n", 'A', 1235.123, 0, 56985);*/
+	/*cor = dprintf(2, "Okalmos : %c %f %d %x\n", 'A', 1235.123, 0, 56985);*/
+	/*printf("my : %d\ncl: %d\n", ans, cor);*/
+
+	ans = ft_printf("Okalmos : %12c %-5f %020d %#x\n", 'A', 1235.123, 0, 56985);
+	cor = dprintf(2, "Okalmos : %12c %-5f %020d %#x\n", 'A', 1235.123, 0, 56985);
+	printf("my : %d\ncl: %d\n", ans, cor);
+
 
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/23 12:47:26 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/30 20:04:24 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/30 23:00:35 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <string.h>
 # include <stdarg.h>
 # include <inttypes.h>
+# define INFP		(1.0 / 0.0)
+# define INFN		(-1.0 / 0.0)
 
 enum				e_flags
 {
@@ -43,7 +45,7 @@ typedef enum		e_mods
 # define FLAG_0		(1 << _FLAG_0)
 # define FLAG_M		(1 << _FLAG_M)
 # define FLAG_P		(1 << _FLAG_P)
-# define FLAG_SP		(1 << _FLAG_SP)
+# define FLAG_SP	(1 << _FLAG_SP)
 
 # define CONV_CHARS	"cspdDioOuUxXfkKbBp"
 # define FLAG_CHARS	"#0-+ "
@@ -117,6 +119,8 @@ int					put_r(t_conv_spec *cs, va_list arg);
 
 void				put_nchars(int n, char c);
 void				putstr_r(char *s, unsigned int size);
+int					is_neg(long double f);
+int					is_special(long double f);
 
 void				parse_flags(t_conv_spec *cs, char *fmt, size_t *i);
 void				parse_field(t_conv_spec *cs, char *fmt, size_t *i,
