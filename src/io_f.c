@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:53:35 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/30 16:15:50 by valecart         ###   ########.fr       */
+/*   Updated: 2019/04/30 17:41:11 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ long double		put_f_round(t_conv_spec *cs, long double f)
 	return (f);
 }
 
-void			put_f_decimal(t_conv_spec *cs, long double f, size_t num_size)
+void			put_f_decimal(t_conv_spec *cs, long double f)
 {
 	unsigned int	n;
 
@@ -49,26 +49,16 @@ void			put_f_decimal(t_conv_spec *cs, long double f, size_t num_size)
 			f -= (unsigned long long)f;
 		}
 	}
-	if (cs->flags & FLAG_M)
-		put_nchars(cs->field - num_size, ' ');
 }
 
 long double		put_f_zero_precision(t_conv_spec *cs, long double f)
 {
 	long double	tmp;
 
-	tmp = f;
+	tmp = f - (long long)f;
 	if (cs->precision == 0)
-	{
-		if ((unsigned long long)((tmp = tmp * 10
-						- (((unsigned long long)tmp / 10) * 10))) % 10 >= 5)
-		{
-			if (f >= 0)
-				f++;
-			else
-				f--;
-		}
-	}
+		if ((long long)(tmp * 10)  >= 5)
+			f += f >= 0 ? 1 : -1;
 	return (f);
 }
 
@@ -84,12 +74,14 @@ int				put_f(t_conv_spec *cs, va_list arg)
 		+ (cs->precision > 0 ? 1 : 0);
 	num_size += (f < 0 || cs->flags & FLAG_P ? 1 : 0);
 	if (!(cs->flags & FLAG_M))
-		put_nchars(cs->field - num_size, cs->flags & FLAG_0 ? '0' : ' ');
+		ft_putnchar(cs->flags & FLAG_0 ? '0' : ' ', cs->field - num_size);
 	if (cs->flags & (FLAG_SP | FLAG_P))
 		if (f >= 0)
 			ft_putchar(cs->flags & FLAG_P ? '+' : ' ');
 	f = put_f_zero_precision(cs, f);
-	ft_putnbr((int)f);
-	put_f_decimal(cs, f, num_size);
+	ft_putnbr((long long)f);
+	put_f_decimal(cs, f);
+	if (cs->flags & FLAG_M)
+		ft_putnchar(' ', cs->field - num_size);
 	return (max(num_size, cs->field));
 }
