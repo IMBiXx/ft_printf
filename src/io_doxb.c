@@ -6,7 +6,7 @@
 /*   By: tpotier <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:04:50 by tpotier           #+#    #+#             */
-/*   Updated: 2019/04/29 16:56:51 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/29 17:07:05 by valecart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int			put_d(t_conv_spec *cs, va_list arg)
 		n_zeroes += cs->field - num_size;
 	if (cs->precision || d)
 		ft_putl_zer_base(d, n_zeroes, cs->flags, 10);
+	else if (cs->flags & (FLAG_P | FLAG_SP))
+		ft_putchar(cs->flags & FLAG_P ? '+' : ' ');
 	if (cs->flags & FLAG_M)
 		put_nchars(cs->field - num_size, ' ');
 	return (max(num_size, cs->field));
