@@ -6,7 +6,7 @@
 /*   By: valecart <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 15:53:35 by valecart          #+#    #+#             */
-/*   Updated: 2019/04/30 17:50:02 by tpotier          ###   ########.fr       */
+/*   Updated: 2019/04/30 17:52:36 by tpotier          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,8 @@ void			put_f_decimal(t_conv_spec *cs, long double f)
 
 long double		put_f_zero_precision(t_conv_spec *cs, long double f)
 {
-	long double	tmp;
-
-	tmp = (f - (long long)f) * (f > 0 ? 1 : -1);
 	if (cs->precision == 0)
-		if (tmp >= 0.5)
+		if ((f - (long long)f) * (f > 0 ? 1 : -1) >= 0.5)
 			f += f > 0 ? 1 : -1;
 	return (f);
 }
